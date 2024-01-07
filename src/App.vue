@@ -85,14 +85,12 @@ useIntervalFn(fetchStats, 2000, {
             <div class="flex items-center gap-2">
               <span
                 v-if="!isOnline(stat, stats.updated)"
-                class="inline-block px-2 py-1 text-xs font-semibold text-red-600 bg-red-100 dark:text-red-100 dark:bg-red-600 rounded-full"
+                class="inline-block w-16 py-1 text-center text-xs font-semibold text-red-600 bg-red-100 dark:text-red-100 dark:bg-red-600 rounded-full"
               >Offline</span>
-              <template v-else>
-                <div v-if="stat.online4" class="h-3 w-3 rounded-full bg-green-500" title="IPv4" />
-                <div v-else class="h-3 w-3 rounded-full bg-red-500" title="IPv4" />
-                <div v-if="stat.online6" class="h-3 w-3 rounded-full bg-green-500" title="IPv6" />
-                <div v-else class="h-3 w-3 rounded-full bg-red-500" title="IPv6" />
-              </template>
+              <span
+                v-else
+                class="inline-block w-16 py-1 text-center text-xs font-semibold text-green-600 bg-green-100 dark:text-green-100 dark:bg-green-600 rounded-full"
+              >{{ stat.online6 ? 'IPv6' : 'IPv4' }}</span>
             </div>
           </div>
 
@@ -182,9 +180,9 @@ useIntervalFn(fetchStats, 2000, {
             </div>
 
             <!-- Network -->
-            <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
+            <div class="lg:col-span-3 flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
               <bi-ethernet class="inline-block w-4 h-4 text-gray-400 dark:text-gray-500" />
-              <div class="flex flex-col">
+              <div class="grid grid-flow-col grid-rows-2 lg:grid-rows-none gap-x-2">
                 <p class="inline-block">
                   <bi-arrow-up-short class="inline-block w-4 h-4 text-gray-400 dark:text-gray-500" />
                   <span class="align-middle">{{ formatNetworkSpeed(stat.network_tx) }}
@@ -195,15 +193,13 @@ useIntervalFn(fetchStats, 2000, {
                   <span class="align-middle">{{ formatNetworkSpeed(stat.network_rx) }}
                   ({{ formatSize(stat.network_in) }} total)</span>
                 </p>
-              </div>
-              <div v-if="stat.tcp_count || stat.udp_count" class="flex flex-col ml-2">
                 <p class="inline-block">
-                  <span class="text-gray-400 dark:text-gray-500">TCP:</span>
-                  {{ stat.tcp_count }}
+                  <span class="ml-1 align-middle text-gray-400 dark:text-gray-500">TCP:</span>
+                  <span class="align-middle">{{ stat.tcp_count }}</span>
                 </p>
                 <p class="inline-block">
-                  <span class="text-gray-400 dark:text-gray-500">UDP:</span>
-                  {{ stat.udp_count }}
+                  <span class="ml-1 align-middle text-gray-400 dark:text-gray-500">UDP:</span>
+                  <span class="align-middle">{{ stat.udp_count }}</span>
                 </p>
               </div>
             </div>
