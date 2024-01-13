@@ -11,6 +11,7 @@ Some notable differences from the official theme includes:
 - Card-styled layout
 - Reduced polling rate to 2s
 - Removed the ping test section
+- Added a one-click deployment command generator
 
 ## Deployment
 

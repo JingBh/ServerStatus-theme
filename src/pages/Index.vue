@@ -13,6 +13,8 @@ import {
   getSwapPercentage, getSwapText,
   isOnline
 } from '../utils/stats.ts'
+import AppFooter from '../fragments/AppFooter.vue'
+import AppHeader from '../fragments/AppHeader.vue'
 
 import BiArrowDownShort from 'bootstrap-icons/icons/arrow-down-short.svg?component'
 import BiArrowUpShort from 'bootstrap-icons/icons/arrow-up-short.svg?component'
@@ -27,6 +29,7 @@ import BiHddStack from 'bootstrap-icons/icons/hdd-stack.svg?component'
 import BiMemory from 'bootstrap-icons/icons/memory.svg?component'
 import BiMotherboard from 'bootstrap-icons/icons/motherboard.svg?component'
 import BiPower from 'bootstrap-icons/icons/power.svg?component'
+import BiRouter from 'bootstrap-icons/icons/router.svg?component'
 
 const {
   data: stats,
@@ -46,6 +49,7 @@ useIntervalFn(fetchStats, 2000, {
 </script>
 
 <template>
+  <app-header custom-class="max-w-7xl" />
   <div class="max-w-7xl mx-auto p-6 sm:px-8 flex flex-col items-stretch gap-2">
     <div v-if="!stats && isLoading" class="flex justify-center items-center gap-3 py-8" role="status">
       <svg aria-hidden="true" class="w-8 h-8 text-gray-300 animate-spin dark:text-gray-700 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,6 +71,7 @@ useIntervalFn(fetchStats, 2000, {
           <h5 class="text-lg font-medium">
             <bi-display v-if="stat.type === 'PC'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
             <bi-motherboard v-else-if="stat.type === 'Board'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
+            <bi-router v-else-if="stat.type === 'Router'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
             <bi-hdd-network v-else-if="stat.type === 'KVM'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
             <bi-hdd-stack v-else class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
             <span v-text="stat.alias || stat.name" />
@@ -206,4 +211,5 @@ useIntervalFn(fetchStats, 2000, {
       Last refresh attempt failed with {{ error }}
     </p>
   </div>
+  <app-footer custom-class="max-w-7xl" />
 </template>

@@ -28,8 +28,9 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       proxy: serverUrl ? {
-        '/json/stats.json': serverUrl,
         '/detail': serverUrl,
+        '/i': serverUrl,
+        '/json/stats.json': serverUrl,
         '/map': serverUrl
       } : undefined
     }
