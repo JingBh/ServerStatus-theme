@@ -20,3 +20,7 @@ Clone the repository, run `yarn build` to build the assets, then follow [these i
 ## Development
 
 Set your `ServerStatus-Rust` instance's URL in the `VITE_SERVER_URL` environment variable (`.env` files are supported), then the Vite development server will be configured to proxy requests to your server.
+
+---
+
+刚知道项目被原作者发现了，有点受宠若惊，赶紧更新隐藏了 footer 中的个人信息，方便各位部署。

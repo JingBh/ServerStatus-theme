@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 defineProps<{
   customClass?: string
 }>()
+
+const isPersonal = computed(() => {
+  // conditionally display personal information
+  // for the author's personal usage
+  return window.location.hostname.indexOf('jingbh') > -1
+})
 </script>
 
 <template>
@@ -10,7 +18,7 @@ defineProps<{
     :class="customClass"
   >
     <hr class="mb-6 border-t border-gray-200 dark:border-gray-800" />
-    <p class="mb-2 text-xs">
+    <p v-if="isPersonal" class="mb-2 text-xs">
       JingBh's Cloud Status
     </p>
     <p class="text-xs">
