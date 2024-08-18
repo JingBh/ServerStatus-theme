@@ -5,7 +5,6 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 import type { StatsResp } from '../types/stats.ts'
 import AppFooter from '../fragments/AppFooter.vue'
 import AppHeader from '../fragments/AppHeader.vue'
-
 import StatItem from '../components/StatItem.vue'
 
 const {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 // @ts-ignore
 import { countryCodeEmoji } from 'country-code-emoji'
 
@@ -27,7 +28,6 @@ import BiMemory from 'bootstrap-icons/icons/memory.svg?component'
 import BiMotherboard from 'bootstrap-icons/icons/motherboard.svg?component'
 import BiPower from 'bootstrap-icons/icons/power.svg?component'
 import BiRouter from 'bootstrap-icons/icons/router.svg?component'
-import { computed } from 'vue'
 
 const props = defineProps<{
   stat: HostStat
