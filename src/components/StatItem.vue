@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 // @ts-ignore
 import { countryCodeEmoji } from 'country-code-emoji'
+import type { Component } from 'vue'
 
 import {
   formatNetworkSpeed,
@@ -48,6 +49,21 @@ const location = computed(() => {
     return props.stat.location
   }
 })
+
+const icon = computed<Component | null>(() => {
+  const serverType = props.stat.type.toLowerCase()
+  if (serverType === 'pc') {
+    return BiDisplay
+  } else if (serverType === 'board') {
+    return BiMotherboard
+  } else if (serverType === 'router') {
+    return BiRouter
+  } else if (serverType.includes('vm') || serverType === 'hyper-v') {
+    return BiHddNetwork
+  } else {
+    return null
+  }
+})
 </script>
 
 <template>
@@ -55,10 +71,11 @@ const location = computed(() => {
     <div class="flex items-center justify-between gap-3 mb-2">
       <!-- Title -->
       <h5 class="text-lg font-medium">
-        <bi-display v-if="stat.type === 'PC'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
-        <bi-motherboard v-else-if="stat.type === 'Board'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
-        <bi-router v-else-if="stat.type === 'Router'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
-        <bi-hdd-network v-else-if="stat.type.includes('VM') || stat.type === 'Hyper-V'" class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" />
+        <component
+          v-if="icon"
+          :is="icon"
+          class="inline-block w-5 h-5 mr-2 text-gray-600 dark:text-gray-400"
+        />
         <span v-text="stat.alias || stat.name" />
       </h5>
 
