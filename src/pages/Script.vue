@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-import { ClientParams } from '../types/params.ts'
+import type { ClientParams } from '../types/params.ts'
 import AppFooter from '../fragments/AppFooter.vue'
 import AppHeader from '../fragments/AppHeader.vue'
 

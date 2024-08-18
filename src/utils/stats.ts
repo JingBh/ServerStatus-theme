@@ -13,15 +13,6 @@ export const formatNetworkSpeed = (v: number): string => {
   return res.substring(0, res.length - 1) + 'bps'
 }
 
-export const isOnline = (stats: HostStat, updated?: number): boolean => {
-  if (!updated) {
-    updated = Date.now() / 1000
-  }
-
-  // when a server don't report for 60 seconds, it's considered offline
-  return (updated - stats.latest_ts) < 60
-}
-
 export const getMemoryPercentage = (stats: HostStat): number => {
   return Math.round(stats.memory_used / stats.memory_total * 100)
 }

@@ -16,7 +16,7 @@ defineProps<{
 <template>
   <div class="w-full bg-slate-800 text-white">
     <div
-      class="mx-auto flex justify-between items-center gap-3 px-6 py-8 sm:px-8"
+      class="mx-auto flex justify-between items-center gap-3 p-6 sm:p-8"
       :class="customClass"
     >
       <router-link to="/" class="flex-shrink-0 inline-flex items-center gap-3">
@@ -40,9 +40,7 @@ defineProps<{
           leave-from-class="transform scale-100 opacity-100"
           leave-to-class="transform scale-95 opacity-0"
         >
-          <menu-items
-            class="absolute top-10 right-0 w-40 p-1 origin-top-right rounded-md bg-white/75 dark:bg-black/75 backdrop-blur text-gray-700 dark:text-gray-200 shadow-lg ring-1 ring-black/5 focus:outline-none"
-          >
+          <menu-items class="absolute top-10 right-0 w-40 p-1 origin-top-right rounded-md bg-white/75 dark:bg-black/75 backdrop-blur text-gray-700 dark:text-gray-200 shadow-lg ring-1 ring-black/5 focus:outline-none">
             <menu-item v-slot="{ active }">
               <router-link
                 class="flex w-full items-center rounded-md p-2 text-sm"
