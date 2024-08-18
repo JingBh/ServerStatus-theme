@@ -13,14 +13,30 @@ Some notable differences from the official theme includes:
 - Removed the ping test section
 - Added a one-click deployment command generator
 
+### Server Icon
+
+An icon will be added before the server name if the `type` of that server matches one of the following:
+
+- <img src="https://github.com/twbs/icons/raw/main/icons/display.svg" width="24" height="16">: `PC`
+- <img src="https://github.com/twbs/icons/raw/main/icons/motherboard.svg" width="24" height="16">: `Board`
+- <img src="https://github.com/twbs/icons/raw/main/icons/router.svg" width="24" height="16">: `Router`
+- <img src="https://github.com/twbs/icons/raw/main/icons/hdd-network.svg" width="24" height="16">: Any string containing `VM` or the string `Hyper-V`
+
 ## Deployment
 
 Clone the repository, run `yarn build` to build the assets, then follow [these instructions](https://github.com/zdz/ServerStatus-Rust/discussions/37) for deployment.
 
+### Customization
+
+You may customize some of the UI elements with environment variables when building the assets:
+
+- `VITE_APP_TITLE`: The title of the page, defaults to "ServerStatus"
+- `VITE_APP_FOOTER_TEXT`: The footer text, defaults to none
+
+### Pre-built Assets
+
+You can find the latest automatically built assets in artifacts of the latest [Actions](https://github.com/JingBh/ServerStatus-theme/actions/workflows/assets.yml) run.
+
 ## Development
 
 Set your `ServerStatus-Rust` instance's URL in the `VITE_SERVER_URL` environment variable (`.env` files are supported), then the Vite development server will be configured to proxy requests to your server.
-
----
-
-刚知道项目被原作者发现了，有点受宠若惊，赶紧更新隐藏了 footer 中的个人信息，方便各位部署。
