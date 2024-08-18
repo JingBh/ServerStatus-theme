@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useIntervalFn } from '@vueuse/core'
 import { useAxios } from '@vueuse/integrations/useAxios'
 
 import type { StatsResp } from '../types/stats.ts'
@@ -12,15 +11,13 @@ const {
   isLoading,
   error,
   execute: fetchStats
-} = useAxios<StatsResp>('json/stats.json', {
-  //
-}, {
-  immediate: false
-})
-
-useIntervalFn(fetchStats, 2000, {
+} = useAxios<StatsResp>('json/stats.json', {}, {
   immediate: true,
-  immediateCallback: true
+  onFinish: () => {
+    setTimeout(() => {
+      fetchStats()
+    }, 2000)
+  }
 })
 </script>
 
