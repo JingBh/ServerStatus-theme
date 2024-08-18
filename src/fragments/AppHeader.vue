@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, watch } from 'vue'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
 import BiCodeSlash from 'bootstrap-icons/icons/code-slash.svg?component'
@@ -11,6 +12,16 @@ import logoUrl from '../assets/images/logo.svg?url'
 defineProps<{
   customClass?: string
 }>()
+
+const title = computed(() => {
+  return import.meta.env.VITE_APP_TITLE || 'ServerStatus'
+})
+
+watch(title, (val) => {
+  document.title = val
+}, {
+  immediate: true
+})
 </script>
 
 <template>
@@ -21,9 +32,10 @@ defineProps<{
     >
       <router-link to="/" class="flex-shrink-0 inline-flex items-center gap-3">
         <img alt="Logo" :src="logoUrl" class="w-8 h-8 inline-block" />
-        <h1 class="text-xl sm:text-2xl font-titillium font-semibold">
-          ServerStatus
-        </h1>
+        <h1
+          class="text-xl sm:text-2xl font-titillium font-semibold"
+          v-text="title"
+        />
       </router-link>
       <Menu as="div" class="relative inline-flex items-center gap-3">
         <menu-button

@@ -5,10 +5,8 @@ defineProps<{
   customClass?: string
 }>()
 
-const isPersonal = computed(() => {
-  // conditionally display personal information
-  // for the author's personal usage
-  return window.location.hostname.indexOf('jingbh') > -1
+const footerText = computed(() => {
+  return import.meta.env.VITE_APP_FOOTER_TEXT
 })
 </script>
 
@@ -18,9 +16,11 @@ const isPersonal = computed(() => {
     :class="customClass"
   >
     <hr class="mb-6 border-t border-gray-200 dark:border-gray-800" />
-    <p v-if="isPersonal" class="mb-2 text-xs">
-      JingBh's Cloud Status
-    </p>
+    <p
+      v-if="footerText"
+      class="mb-2 text-xs"
+      v-text="footerText"
+    />
     <p class="text-xs">
       <span class="inline-block">Powered by <a class="underline underline-offset-2" href="https://github.com/zdz/ServerStatus-Rust" target="_blank" ref="noreferer">ServerStatus-Rust</a></span>
       <span class="inline-block text-gray-400 dark:text-gray-500 mx-2" aria-hidden="true">|</span>
