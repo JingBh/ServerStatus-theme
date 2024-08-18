@@ -41,22 +41,20 @@ const isValid = computed(() => {
 })
 
 const command = computed(() => {
-  const params = new URLSearchParams()
+  const url = new URL('i', location.href)
   for (const [key, value] of Object.entries(form.value)) {
     if (value === undefined || value === null || value === serverDefaults[key]) {
       continue
     }
 
     if (typeof value === 'boolean') {
-      params.append(key, value ? '1' : '0')
+      url.searchParams.append(key, value ? '1' : '0')
     } else {
-      params.append(key, value.toString())
+      url.searchParams.append(key, value.toString())
     }
   }
 
-  const url = location.origin + '/i?' + params.toString()
-
-  return `curl -fsSL "${url}" | ${useSudo.value ? 'sudo ' : ''}bash`
+  return `curl -fsSL "${url.toString()}" | ${useSudo.value ? 'sudo ' : ''}bash`
 })
 </script>
 
