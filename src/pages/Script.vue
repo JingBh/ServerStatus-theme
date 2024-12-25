@@ -41,7 +41,7 @@ const isValid = computed(() => {
 })
 
 const command = computed(() => {
-  const url = new URL('i', location.href)
+  const url = new URL('i', import.meta.env.VITE_SERVER_URL || location.href)
   for (const [key, value] of Object.entries(form.value)) {
     if (value === undefined || value === null || value === serverDefaults[key]) {
       continue
