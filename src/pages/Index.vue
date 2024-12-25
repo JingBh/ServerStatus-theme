@@ -6,12 +6,13 @@ import AppFooter from '../fragments/AppFooter.vue'
 import AppHeader from '../fragments/AppHeader.vue'
 import StatItem from '../components/StatItem.vue'
 
+const apiUrl = import.meta.env.VITE_SERVER_URL || ''
 const {
   data: stats,
   isLoading,
   error,
   execute: fetchStats
-} = useAxios<StatsResp>('json/stats.json', {}, {
+} = useAxios<StatsResp>(`${apiUrl}/json/stats.json`, {}, {
   immediate: true,
   onFinish: () => {
     setTimeout(() => {
