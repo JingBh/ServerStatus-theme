@@ -22,6 +22,8 @@ watch(title, (val) => {
 }, {
   immediate: true
 })
+
+const apiUrl = import.meta.env.VITE_SERVER_URL || ''
 </script>
 
 <template>
@@ -70,7 +72,7 @@ watch(title, (val) => {
               <a
                 class="flex w-full items-center rounded-md p-2 text-sm"
                 :class="active ? 'bg-blue-500 text-white' : ''"
-                href="/detail"
+                :href="`${apiUrl}/detail`"
               >
                 <bi-list-task
                   class="h-4 w-4 inline-block mr-2"
@@ -83,7 +85,7 @@ watch(title, (val) => {
               <a
                 class="flex w-full items-center rounded-md p-2 text-sm"
                 :class="active ? 'bg-blue-500 text-white' : ''"
-                href="/map"
+                :href="`${apiUrl}/map`"
               >
                 <bi-globe
                   class="h-4 w-4 inline-block mr-2"
