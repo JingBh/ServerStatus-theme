@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAxios } from '@vueuse/integrations/useAxios'
+import { computed } from 'vue'
 
 import type { StatsResp } from '../types/stats.ts'
 import AppFooter from '../fragments/AppFooter.vue'
@@ -20,6 +21,14 @@ const {
     }, 2000)
   }
 })
+
+// 添加computed属性对servers进行自然排序
+const sortedServers = computed(() => {
+  if (!stats.value?.servers) return []
+  return [...stats.value.servers].sort((a, b) => {
+    return a.alias.localeCompare(b.alias, undefined, { numeric: true, sensitivity: 'base' })
+  })
+})
 </script>
 
 <template>
@@ -37,7 +46,7 @@ const {
       class="flex flex-col items-stretch gap-6 mb-4"
     >
       <stat-item
-        v-for="stat of stats.servers"
+        v-for="stat of sortedServers"
         :key="stat.name"
         :stat="stat"
       />
